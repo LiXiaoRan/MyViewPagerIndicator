@@ -1,0 +1,9 @@
+<resources>
+    <declare-styleable name="ViewPagerIndicator">
+        <attr name="exampleString" format="string" />
+        <attr name="exampleDimension" format="dimension" />
+        <attr name="exampleColor" format="color" />
+        <attr name="exampleDrawable" format="color|reference" />
+        <attr name="item_count" format="integer" />
+    </declare-styleable>
+</resources>
