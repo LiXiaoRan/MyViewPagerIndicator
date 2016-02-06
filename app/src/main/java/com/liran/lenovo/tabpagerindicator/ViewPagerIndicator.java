@@ -10,6 +10,7 @@ import android.graphics.Path;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
@@ -25,6 +26,7 @@ import java.util.List;
  */
 public class ViewPagerIndicator extends LinearLayout {
 
+    private static final String TAG = "ViewPagerIndicator";
     /**
      * 绘制三角形的画笔
      */
@@ -376,20 +378,22 @@ public class ViewPagerIndicator extends LinearLayout {
      */
     private void scroll(int position, float positionOffset) {
 
+        Log.d(TAG, "scroll: position: "+position+"  offset: "+positionOffset);
         //不断改变偏移量
         mTranslationX = (int) (getWidth() / mTabVisibleCount * (position + positionOffset));
 
         int tabWidth = getScreenWidth() / mTabVisibleCount;
 
         //容器滚动
-        if (getChildCount() > mTabVisibleCount && positionOffset > 0 && position >= (mTabVisibleCount - 2)) {
+      /*  if (getChildCount() > mTabVisibleCount && positionOffset > 0 && position >= (mTabVisibleCount - 2)) {
+            Log.d(TAG, "scroll: 发生了容器滚动!!!!");
             if (mTabVisibleCount != 1) {
                 this.scroll((position - (mTabVisibleCount - 2)) * tabWidth + (int) (tabWidth * positionOffset), 0);
             } else {
                 this.scroll(position * tabWidth + (int) (tabWidth + positionOffset), 0);
             }
 
-        }
+        }*/
         invalidate();
 
     }
