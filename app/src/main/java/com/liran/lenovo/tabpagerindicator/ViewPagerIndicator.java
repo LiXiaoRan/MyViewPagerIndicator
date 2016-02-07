@@ -385,7 +385,7 @@ public class ViewPagerIndicator extends LinearLayout {
         int tabWidth = getScreenWidth() / mTabVisibleCount;
 
         //容器滚动
-      /*  if (getChildCount() > mTabVisibleCount && positionOffset > 0 && position >= (mTabVisibleCount - 2)) {
+     /*   if (getChildCount() > mTabVisibleCount && positionOffset > 0 && position >= (mTabVisibleCount - 2)) {
             Log.d(TAG, "scroll: 发生了容器滚动!!!!");
             if (mTabVisibleCount != 1) {
                 this.scroll((position - (mTabVisibleCount - 2)) * tabWidth + (int) (tabWidth * positionOffset), 0);
@@ -394,6 +394,23 @@ public class ViewPagerIndicator extends LinearLayout {
             }
 
         }*/
+
+        if (positionOffset > 0 && position >= (mTabVisibleCount - 2)
+                && getChildCount() > mTabVisibleCount)
+        {
+            if (mTabVisibleCount != 1)
+            {
+                this.scrollTo((position - (mTabVisibleCount - 2)) * tabWidth
+                        + (int) (tabWidth * positionOffset), 0);
+            } else
+            // 为count为1时 的特殊处理
+            {
+                this.scrollTo(
+                        position * tabWidth + (int) (tabWidth * positionOffset), 0);
+            }
+        }
+
+
         invalidate();
 
     }
